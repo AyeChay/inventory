@@ -20,4 +20,5 @@ public class warehouseDTO {
     private int locationId;
     private String locationName;
     private boolean deleted;
+    
 }
