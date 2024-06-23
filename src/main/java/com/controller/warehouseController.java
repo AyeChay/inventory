@@ -33,7 +33,12 @@ public class warehouseController {
 
     @Autowired
     LocationRepository locationRepo;
-
+   
+    @GetMapping(value="hello")
+    public String hello(){
+    	return "Hello World";
+    }
+    
     @GetMapping(value="/register")
     public ModelAndView showRegisterForm() {
         ModelAndView mav = new ModelAndView("warehouseRegister");
