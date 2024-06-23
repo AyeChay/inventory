@@ -11,7 +11,7 @@ import com.dto.LocationDTO;
 
 public class LocationRepository {
 	public int insertLocation(LocationDTO dto) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO location (location_name, address, deleted) values (?,?,?)");
@@ -27,7 +27,7 @@ public class LocationRepository {
     }
 
     public List<LocationDTO> getAllLocations() {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         List<LocationDTO> lists = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM location WHERE deleted = FALSE");
@@ -48,7 +48,7 @@ public class LocationRepository {
 
     public LocationDTO getLocationById(int id) {
         LocationDTO locationDTO = null;
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM location WHERE location_id=? AND deleted = FALSE");
             ps.setInt(1, id);
@@ -67,7 +67,7 @@ public class LocationRepository {
     }
 
     public int updateLocation(LocationDTO dto) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE location SET location_name = ?, address = ? WHERE location_id = ?");
@@ -83,7 +83,7 @@ public class LocationRepository {
     }
 
     public int softDeleteLocation(int id) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE location SET deleted = TRUE WHERE location_id = ?");
