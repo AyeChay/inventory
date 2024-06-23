@@ -12,7 +12,7 @@ import com.dto.warehouseDTO;
 public class WarehouseRepository {
 	
 	public int insertWarehouse(warehouseDTO dto) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO warehouse (product_code, product_name, description, quantity, date, expired_date, location_id, deleted) values (?,?,?,?,?,?,?,?)");
@@ -34,7 +34,7 @@ public class WarehouseRepository {
 
 
 	public List<warehouseDTO> getAllWarehouses() {
-	    Connection con = connectionClass.getConnection();
+	    Connection con = ConnectionClass.getConnection();
 	    List<warehouseDTO> lists = new ArrayList<>();
 	    try {
 	        PreparedStatement ps = con.prepareStatement(
@@ -67,7 +67,7 @@ public class WarehouseRepository {
 	
 	public warehouseDTO getWarehouseById(int id) {
 	    warehouseDTO warehouseDTO = null;
-	    Connection con = connectionClass.getConnection();
+	    Connection con = ConnectionClass.getConnection();
 	    try {
 	        PreparedStatement ps = con.prepareStatement(
 	            "SELECT w.*, l.* FROM warehouse w INNER JOIN location l ON w.location_id = l.location_id WHERE w.id = ? and w.deleted = FALSE"
@@ -95,7 +95,7 @@ public class WarehouseRepository {
 
 
     public int updateWarehouse(warehouseDTO dto) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
             PreparedStatement ps = con.prepareStatement(
@@ -118,7 +118,7 @@ public class WarehouseRepository {
     }
     
     public int softDeleteWarehouse(int id) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE warehouse SET deleted = TRUE WHERE id = ?");
