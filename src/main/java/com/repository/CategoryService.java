@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import spring.dto.CategoryDTO;
+import com.dto.CategoryDTO;
 
 public class CategoryService {
 

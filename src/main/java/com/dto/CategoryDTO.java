@@ -1,4 +1,4 @@
-package spring.dto;
+package com.dto;
 
 import lombok.Data;
 

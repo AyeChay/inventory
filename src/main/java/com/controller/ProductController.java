@@ -1,4 +1,4 @@
-package spring.controller;
+package com.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import spring.dto.CategoryDTO;
-import spring.dto.ProductDTO;
-import spring.dto.ProductLotDTO;
-import spring.model.ProductBean;
-import spring.model.ProductLotBean;
-import spring.service.CategoryService;
-import spring.service.ProductService;
+import com.dto.ProductDTO;
+import com.dto.ProductLotDTO;
+import com.model.ProductBean;
+import com.model.ProductLotBean;
+import com.repository.CategoryService;
+import com.repository.ProductService;
+
+
+
+
 
 @Controller
 @RequestMapping(value="/product")

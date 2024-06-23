@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dto.CategoryDTO;
+import com.model.CategoryBean;
+import com.repository.CategoryService;
+
 @Controller
 @RequestMapping(value="/category")
 public class CategoryController {
