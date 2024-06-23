@@ -1,4 +1,3 @@
-/build/classes
-*.class
-
-/target/
+/build/class
+*.classes
+/target
