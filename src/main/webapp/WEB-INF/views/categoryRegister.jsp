@@ -9,15 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h2>Register Location</h2>
-    <form:form modelAttribute="location" method="post" action="${pageContext.request.contextPath}/location/doregister">
+	<h2>Register Category</h2>
+    <form:form modelAttribute="category" method="post" action="${pageContext.request.contextPath}/category/doregister">
         <form:label path="name">Name:</form:label>
         <form:input path="name"/>
         <form:errors path="name" cssClass="error"/>
         <br/>
-        <form:label path="address">Address:</form:label>
-        <form:input path="address"/>
-        <form:errors path="address" cssClass="error"/>
+        <form:label path="description">Name:</form:label>
+        <form:input path="description"/>
+        <form:errors path="description" cssClass="error"/>
         <br/>
         <input type="submit" value="Register"/>
     </form:form>

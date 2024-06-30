@@ -20,6 +20,7 @@
                 <th>Quantity</th>
                 <th>Date</th>
                 <th>Expire Date</th>
+                
                 <th>Location</th>
                 <th>Actions</th>
             </tr>

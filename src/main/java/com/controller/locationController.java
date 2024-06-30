@@ -22,7 +22,7 @@ import com.repository.LocationRepository;
 
 @Controller
 @RequestMapping(value="/location")
-public class locationController {
+public class LocationController {
 	@Autowired
     ModelMapper modelMapper;
 
@@ -40,16 +40,25 @@ public class locationController {
         if (br.hasErrors()) {
             return "locationRegister";
         }
-
+        String trimmedDescription = locationDTO.getAddress().trim();
+        if (trimmedDescription.length() > 20) {
+            model.addAttribute("error", "Address must be 20 characters or less.");
+            return "locationRegister";
+        }
+        
+        boolean exists = locationRepo.checkWarehousename(locationDTO.getName());
+        if(exists) {
+        	model.addAttribute("error", "Warehouse name already exists. please choose a different name");
+        	return "locationRegister";
+        }
         LocationDTO dto = modelMapper.map(locationDTO, LocationDTO.class);
         int result = locationRepo.insertLocation(dto);
-
-        if (result > 0) {
+    	if (result > 0) {
             return "redirect:/location/showlocations";
         } else {
             model.addAttribute("error", "Failed to register location. Please try again.");
             return "locationRegister";
-        }
+        }	    
     }
 
     
@@ -60,7 +69,7 @@ public class locationController {
         return "locationList";
     }
 
-    // Show a specific location for editing
+    
     @GetMapping(value="/editlocation/{id}")
     public String showLocationById(@PathVariable("id") int id, Model model) {
         LocationDTO dto = locationRepo.getLocationById(id);
@@ -90,7 +99,7 @@ public class locationController {
         }
     }
 
-    // Soft delete a location
+    
     @GetMapping(value="/deletelocation/{id}")
     public String deleteLocation(@PathVariable("id") int id) {
         int result = locationRepo.softDeleteLocation(id);

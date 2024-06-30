@@ -9,17 +9,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h2>Register Location</h2>
-    <form:form modelAttribute="location" method="post" action="${pageContext.request.contextPath}/location/doregister">
+	<h2>Edit Category</h2>
+    <form:form modelAttribute="category" method="post" action="${pageContext.request.contextPath}/category/doupdate">
+        <form:hidden path="id"/>
         <form:label path="name">Name:</form:label>
         <form:input path="name"/>
         <form:errors path="name" cssClass="error"/>
         <br/>
-        <form:label path="address">Address:</form:label>
-        <form:input path="address"/>
-        <form:errors path="address" cssClass="error"/>
+        <form:label path="description">Description:</form:label>
+        <form:input path="description"/>
+        <form:errors path="description" cssClass="error"/>
         <br/>
-        <input type="submit" value="Register"/>
+        <input type="submit" value="Update"/>
     </form:form>
     <c:if test="${not empty error}">
         <p class="error">${error}</p>

@@ -11,10 +11,10 @@ import com.dto.LocationDTO;
 
 public class LocationRepository {
 	public int insertLocation(LocationDTO dto) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO location (location_name, address, deleted) values (?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO location (name, address, deleted) values (?,?,?)");
             ps.setString(1, dto.getName());
             ps.setString(2, dto.getAddress());
             ps.setBoolean(3, false);
@@ -27,7 +27,7 @@ public class LocationRepository {
     }
 
     public List<LocationDTO> getAllLocations() {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         List<LocationDTO> lists = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM location WHERE deleted = FALSE");
@@ -35,7 +35,7 @@ public class LocationRepository {
             while (rs.next()) {
                 LocationDTO dto = new LocationDTO();
                 dto.setId(rs.getInt("location_id"));
-                dto.setName(rs.getString("location_name"));
+                dto.setName(rs.getString("name"));
                 dto.setAddress(rs.getString("address"));
                 dto.setDeleted(rs.getBoolean("deleted"));
                 lists.add(dto);
@@ -45,10 +45,26 @@ public class LocationRepository {
         }
         return lists;
     }
+    
+    public boolean checkWarehousename(String name) {
+        Connection con = ConnectionClass.getConnection();
+        boolean status = false;
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM location WHERE name=?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                status = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Already warehousename error: " + e.getMessage());
+        }
+        return status;
+    }
 
     public LocationDTO getLocationById(int id) {
         LocationDTO locationDTO = null;
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM location WHERE location_id=? AND deleted = FALSE");
             ps.setInt(1, id);
@@ -56,7 +72,7 @@ public class LocationRepository {
             if (rs.next()) {
                 locationDTO = new LocationDTO();
                 locationDTO.setId(rs.getInt("location_id"));
-                locationDTO.setName(rs.getString("location_name"));
+                locationDTO.setName(rs.getString("name"));
                 locationDTO.setAddress(rs.getString("address"));
                 locationDTO.setDeleted(rs.getBoolean("deleted"));
             }
@@ -67,10 +83,10 @@ public class LocationRepository {
     }
 
     public int updateLocation(LocationDTO dto) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
-            PreparedStatement ps = con.prepareStatement("UPDATE location SET location_name = ?, address = ? WHERE location_id = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE location SET name = ?, address = ? WHERE location_id = ?");
             ps.setString(1, dto.getName());
             ps.setString(2, dto.getAddress());
             ps.setInt(3, dto.getId());
@@ -83,7 +99,7 @@ public class LocationRepository {
     }
 
     public int softDeleteLocation(int id) {
-        Connection con = connectionClass.getConnection();
+        Connection con = ConnectionClass.getConnection();
         int result = 0;
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE location SET deleted = TRUE WHERE location_id = ?");

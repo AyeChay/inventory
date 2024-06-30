@@ -9,25 +9,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <h2>Location List</h2>
+	<h2>Category List</h2>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Address</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="location" items="${locationList}">
+            <c:forEach var="category" items="${categoryList}">
                 <tr>
-                    <td>${location.id}</td>
-                    <td>${location.name}</td>
-                    <td>${location.address}</td>
+                    <td>${category.id}</td>
+                    <td>${category.name}</td>
+                    <td>${category.description}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/location/editlocation/${location.id}">Edit</a>
-                        <a href="${pageContext.request.contextPath}/location/deletelocation/${location.id}">Delete</a>
+                        <a href="${pageContext.request.contextPath}/category/editcategory/${category.id}">Edit</a>
+                        <a href="${pageContext.request.contextPath}/category/deletecategory/${category.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -13,8 +13,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 ">
 	<bean id="locationRepo" class="com.repository.LocationRepository"></bean>
 	<bean id="warehouseRepo" class="com.repository.WarehouseRepository"></bean>
-	<bean id="categoryService" class="com.repository.CategoryService"></bean>
-	<bean id="productService" class="com.repository.ProductService"></bean>
+	<bean id="productRepo" class="com.repository.ProductOneRepository"></bean>
+	<bean id="categoryRepo" class="com.repository.CategoryRepository"></bean>
 	<context:component-scan
 		base-package="com.controller" />
 	<mvc:annotation-driven />

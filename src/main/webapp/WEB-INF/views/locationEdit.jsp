@@ -9,20 +9,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>Edit Location</h2>
-    <form:form action="${pageContext.request.contextPath}/location/doupdate" modelAttribute="location">
-        <form:hidden path="id" />
-        <div>
-            <form:label path="name">Location Name:</form:label>
-            <form:input path="name" />
-        </div>
-        <div>
-            <form:label path="address">Address:</form:label>
-            <form:input path="address" />
-        </div>
-        <div>
-            <input type="submit" value="Update" />
-        </div>
+	 <h2>Edit Location</h2>
+    <form:form modelAttribute="location" method="post" action="${pageContext.request.contextPath}/location/doupdate">
+        <form:hidden path="id"/>
+        <form:label path="name">Name:</form:label>
+        <form:input path="name"/>
+        <form:errors path="name" cssClass="error"/>
+        <br/>
+        <form:label path="address">Address:</form:label>
+        <form:input path="address"/>
+        <form:errors path="address" cssClass="error"/>
+        <br/>
+        <input type="submit" value="Update"/>
     </form:form>
+    <c:if test="${not empty error}">
+        <p class="error">${error}</p>
+    </c:if>
 </body>
 </html>
